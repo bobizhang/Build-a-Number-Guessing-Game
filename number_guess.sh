@@ -32,11 +32,11 @@ else
     if [[ -z $GET_USERNAME_RESULT ]]
     then
       # insert the new username
-      echo "Welcome, ! It looks like this is your first time here."
+      echo "Welcome, $USERNAME! It looks like this is your first time here."
       INSERT_USER_RESULT=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME')")
       #echo "insert into database: $INSERT_USER_RESULT"
     else
-      echo "Welcome back, ! You have played  games, and your best game took  guesses."
+      echo "Welcome back, $USERNAME! You have played  games, and your best game took  guesses."
     fi
     # start number guess game
   fi
@@ -72,5 +72,6 @@ guess_game() {
     fi
   done
 }
-
-guess_game 99
+SECRET_NUMBER=$(( (RANDOM % 1000) + 1 ))
+echo "SECRET_NUMBER: $SECRET_NUMBER"
+guess_game $SECRET_NUMBER
