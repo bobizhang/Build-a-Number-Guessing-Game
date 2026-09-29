@@ -34,7 +34,6 @@ else
       # insert the new username
       echo "Welcome, $USERNAME! It looks like this is your first time here."
       INSERT_USER_RESULT=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME')")
-      #echo "insert into database: $INSERT_USER_RESULT"
       USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'");
       INSERT_RECORD_RESULT=$($PSQL "INSERT INTO records(user_id, score, times) VALUES($USERID, 0, 0)")
       SCORE=0;
@@ -54,7 +53,7 @@ fi
 
 # generate random number
 SECRET_NUMBER=$(( (RANDOM % 1000) + 1 ))
-echo "SECRET_NUMBER: $SECRET_NUMBER"
+#echo "SECRET_NUMBER: $SECRET_NUMBER"
 
 TRIES=0
 
